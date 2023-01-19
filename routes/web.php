@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    // $museums = config('db.museums');
+    // dd($museums);
+
     return view('welcome');
 });
 
