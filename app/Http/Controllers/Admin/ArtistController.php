@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Models\Artist;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Artist;
+use App\Http\Requests\ArtistRequest;
 
 class ArtistController extends Controller
 {
@@ -14,7 +15,8 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        return view('admin.artists.index');
+        $artists = Artist::all();
+        return view('admin.artists.index', compact('artists'));
     }
 
     /**
@@ -50,7 +52,7 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        return view('admin.artists.show');
+        return view('admin.artists.show', compact('artist'));
     }
 
     /**
@@ -61,7 +63,7 @@ class ArtistController extends Controller
      */
     public function edit(Artist $artist)
     {
-        return view('admin.artists.edit');
+        return view('admin.artists.edit', compact('artist'));
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Aggiungi un nuovo museo</h1>
-<form action="{{route('museums.store')}}" method="POST">
+<form action="{{route('admin.museums.store')}}" method="POST">
     @csrf
     <div class="mb-3">
         <label for="name" class="form-label">Nome museo</label>
