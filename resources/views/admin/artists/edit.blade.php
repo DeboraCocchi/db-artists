@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="" method="POST">
+        <form action="{{route('admin.artists.update', $artist)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

@@ -9,6 +9,6 @@
 
 
         </div>
-        <a href="{{ route('comics.index') }}" class="btn btn-light m-5">Torna indietro</a>
+        <a href="{{ route('admin.artists.index') }}" class="btn btn-light m-5">Torna indietro</a>
     </div>
 @endsection

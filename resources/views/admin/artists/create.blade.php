@@ -4,7 +4,7 @@
     <div class="container">
         <h1>inserisci un nuovo artista</h1>
 
-        <form action="{{ route('artists.store') }}" method="POST">
+        <form action="{{ route('admin.artists.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">nome</label>
