@@ -16,6 +16,7 @@ class ArtistController extends Controller
     public function index()
     {
         $artists = Artist::all();
+        // dd($artists);
         return view('admin.artists.index', compact('artists'));
     }
 
@@ -41,7 +42,7 @@ class ArtistController extends Controller
         $new_artist = new Artist();
         $form_data['slug'] = Artist::generateSlug($form_data['name']);
         $new_artist->fill($form_data);
-        $new_project->save();
+        $new_artist->save();
     }
 
     /**
@@ -80,7 +81,7 @@ class ArtistController extends Controller
         if($form_data['name'] != $artist->name){
             $form_data['slug'] = Artist::generateSlug($form_data['name']);
         }else{
-            $form_data['slug'] = $project->slug;
+            $form_data['slug'] = $artist->slug;
         }
 
         $artist->update($form_data);

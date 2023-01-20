@@ -21,6 +21,7 @@ class MuseumsTableSeeder extends Seeder
         foreach($museums as $museum){
             $newMuseum = new Museum();
             $newMuseum->name = $museum['name'];
+            $newMuseum->slug = Museum::generateSlug($museum['name']);
             $newMuseum->nation = $museum['nation'];
             $newMuseum->save();
         }
