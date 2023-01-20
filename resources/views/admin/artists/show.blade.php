@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row  mt-5 ms-5">
             <div class="col">
                 <h1>{{ $artist->name }}</h1>
             </div>

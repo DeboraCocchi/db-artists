@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Museum;
 
 class MuseumController extends Controller
 {
@@ -14,7 +15,9 @@ class MuseumController extends Controller
      */
     public function index()
     {
-        //
+        $museums = Museum::all();
+        // dd($artists);
+        return view('admin.museums.index', compact('museums'));
     }
 
     /**
@@ -24,7 +27,7 @@ class MuseumController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.museums.create');
     }
 
     /**
@@ -35,7 +38,11 @@ class MuseumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        $new_museum = new Museum();
+        $form_data['slug'] = Museum::generateSlug($form_data['name']);
+        $new_museum->fill($form_data);
+        $new_museum->save();
     }
 
     /**
@@ -44,9 +51,9 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Museum $museum)
     {
-        //
+        return view('admin.museums.show', compact('museum'));
     }
 
     /**
@@ -55,9 +62,10 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Museum $museum)
     {
-        //
+        return view('admin.museums.edit', compact('museum'));
+
     }
 
     /**
@@ -67,9 +75,20 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Museum $museum)
     {
-        //
+        $form_data = $request->all();
+
+        if($form_data['name'] != $museum->name){
+            $form_data['slug'] = Museum::generateSlug($form_data['name']);
+        }else{
+            $form_data['slug'] = $museum->slug;
+        }
+
+        $museum->update($form_data);
+
+        return redirect()->route('admin.museums.show', $museum);
+
     }
 
     /**
